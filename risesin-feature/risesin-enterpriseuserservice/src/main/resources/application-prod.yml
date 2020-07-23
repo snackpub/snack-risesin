@@ -1,0 +1,71 @@
+risesin-properties: # 项目配置
+  yunxin: # 网易云信配置
+    app-key: a2476d6cdc57cdaa69ecbc24b00a74dc
+    app-secret: 6ad80820ed5a
+    url: "https://api.netease.im/nimserver/user/create.action"
+  sms:
+    prefix: sms  #redis中key的前缀标识，如sms + 1752131517(手机号) -> sms1752131517
+    expireTime: 10  #存入在redis中验证码的过期时间，单位：分钟
+server:
+  port: 8082
+
+#xss攻击拦截
+xss:
+  enabled: true
+  excludes:
+  urlPatterns: /*
+
+# mysql
+spring:
+  application:
+    name: risesin-enterprise-user-service
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: go_ROOT<0
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:mysql://192.168.1.199:3306/risesin?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&useSSL=false
+    druid:
+      initialSize: 1
+      maxActive: 10
+      minIdle: 1
+      maxWait: 60000
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        hbm2ddl:
+          auto: update
+  rabbitmq:
+    host: 192.168.1.200
+    port: 5672
+    username: admin
+    password: admin
+    publisher-confirms: true
+    virtual-host: /
+
+
+  redis:
+    host: 192.168.1.199
+    port: 6379
+    password: risesin_199
+    pool:
+    timeout: 2000
+    jedis:
+      pool:
+        max-idle: 100
+        max-wait: 1000
+
+management:
+  health:
+    redis:
+      enabled: false
+
+
+#eureka
+eureka:
+  client:
+    service-url:
+      defaultZone: http://192.168.1.200:5000/eureka/,http://192.168.1.198:5000/eureka/,http://192.168.1.197:5000/eureka/
+  instance:
+    prefer-ip-address: true  #访问路径可以显示IP地址

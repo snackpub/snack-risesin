@@ -1,0 +1,11 @@
+${AnsiColor.BRIGHT_CYAN}  ______                    _                  ${AnsiColor.BLUE} _______      _                        _
+${AnsiColor.BRIGHT_CYAN}.' ____ \                  (_)                 ${AnsiColor.BLUE}|_   __ \    (_)                      (_)
+${AnsiColor.BRIGHT_CYAN}| (___ \_|_ .--.   _ .--.  __   _ .--.   .--./)${AnsiColor.BLUE}  | |__) |   __   .--.  .---.  .--.   __   _ .--.
+${AnsiColor.BRIGHT_CYAN} _.____`.[ '/'`\ \[ `/'`\][  | [ `.-. | / /'`\;${AnsiColor.BLUE}  |  __ /   [  | ( (`\]/ /__\\( (`\] [  | [ `.-. |
+${AnsiColor.BRIGHT_CYAN}| \____) || \__/ | | |     | |  | | | | \ \._//${AnsiColor.BLUE} _| |  \ \_  | |  `'.'.| \__., `'.'.  | |  | | | |
+${AnsiColor.BRIGHT_CYAN} \______.'| ;.__/ [___]   [___][___||__].',__` ${AnsiColor.BLUE}|____| |___|[___][\__) )'.__.'[\__) )[___][___||__]
+${AnsiColor.BRIGHT_CYAN}         [__|                          ( ( __))
+
+${AnsiColor.BLUE}:: SpringRisesin :: ${spring.application.name}:${AnsiColor.RED}${risesin.env}${AnsiColor.BLUE} :: Running SpringBoot ${spring-boot.version} :: ${AnsiColor.BRIGHT_BLACK}
+
+

@@ -1,0 +1,110 @@
+#服务器端口
+server:
+  port: 10012
+  undertow:
+    # Set the number of IO threads.It mainly performs non-blocking tasks.They will be responsible for multiple connections. By default, one thread per CPU core is set.
+    io-threads: 4
+    # Blocking task thread pool. When performing a similar servlet request blocking operation, undertow will obtain threads from this thread pool. Its value setting depends on the load of the syste
+    worker-threads: 20
+    # The following configuration will affect the buffers.These buffers will be used for the IO operations of the server connection. It is a bit like netty's pooled memory management.
+    buffer-size: 1024
+    # Whether to allocate direct memory
+    direct-buffers: true
+
+management:
+  #对外暴露端口
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+
+
+#feign setting
+feign:
+  hystrix:
+    enabled: true
+
+#hystrix configuration
+hystrix:
+  threadpool:
+    default:
+      coreSize: 300
+      maxQueueSize: 1000
+      queueSizeRejectionThreshold: 800
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 5000
+
+#risesin配置
+risesin:
+  xss:
+    url:
+      exclude-patterns:
+        - /weixin
+  secure:
+    skip-url:
+      - /test/**
+  client:
+    - client-id: risesin
+      path-patterns:
+        - /risesin/**
+  security:
+    oauth2:
+      storeType: jwt
+    jwt:
+      signingKey: risesinSign
+    social:
+      callback-url: https://www:xfindzp.com/social-login
+  oauth2:
+    client:
+      client-id: risesin
+      client-secret: risesin_secret
+      registered-redirect-uri: https://www.cnblogs.com/skyessay/p/6485187.html
+
+#数据源配置
+spring:
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: go_ROOT<0
+    url: jdbc:mysql://192.168.1.199:3306/risesin?serverTimeZone=Hongkong&allowMultiQueries=true&useUnicode=true&useJDBCCompliantTimezoneShift=true&characterEncoding=UTF-8&useSSL=false&useServerPrepStmts=true&cachePrepStmts=true
+
+  redis:
+    host: 192.168.1.199
+    port: 6379
+    password: risesin_199
+    database: 0
+    timeout: 5000
+    jedis:
+      pool:
+        max-idle: 100
+        max-wait: 1000
+  session:
+    store-type: none
+
+#eureak
+eureka:
+  instance:
+    hostname: ${spring.cloud.client.ip-address}
+    prefer-ip-address: true
+    instance-id: ${eureka.instance.hostname}:${server.port}
+    #Every N(s), a heartbeat is sent to the server to prove that it is still alive.
+    lease-renewal-interval-in-seconds: 120
+    #Tell the server, if I do n’t give you a heartbeat within N(s), it means that I ’m “dead” and kicked me out
+    lease-expiration-duration-in-seconds: 180
+  client:
+    service-url:
+      defaultZone: http://192.168.1.111:5000/eureka/
+
+
+
+logging:
+  level:
+    org.springframework.jdbc.core.JdbcTemplate: DEBUG

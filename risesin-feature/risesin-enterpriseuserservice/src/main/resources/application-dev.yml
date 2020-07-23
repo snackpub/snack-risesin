@@ -1,0 +1,78 @@
+risesin-properties: # 项目配置
+  yunxin: # 网易云信配置
+    app-key: a2476d6cdc57cdaa69ecbc24b00a74dc
+    app-secret: 6ad80820ed5a
+    url: "https://api.netease.im/nimserver/user/create.action"
+  sms:
+    prefix: sms  #redis中key的前缀标识，如sms + 1752131517(手机号) -> sms1752131517
+    expireTime: 10  #存入在redis中验证码的过期时间，单位：分钟
+server:
+  port: 8082
+
+#xss攻击拦截
+xss:
+  enabled: true
+  excludes:
+  urlPatterns: /*
+
+# mysql
+spring:
+  application:
+    name: risesin-enterprise-user-service
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: go_ROOT<0
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:mysql://192.168.1.199:3306/risesin?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=GMT%2b8
+    druid:
+      initialSize: 1
+      maxActive: 10
+      minIdle: 1
+      maxWait: 60000
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        hbm2ddl:
+          auto: validate
+  rabbitmq:
+    host: 192.168.1.200
+    port: 5672
+    username: admin
+    password: admin
+    publisher-confirms: true
+    virtual-host: /
+
+
+  redis:
+    host: 192.168.1.199
+    port: 6379
+    password: risesin_199
+    pool:
+    timeout: 2000
+    jedis:
+      pool:
+        max-idle: 100
+        max-wait: 1000
+
+management:
+  health:
+    redis:
+      enabled: false
+
+
+#eureak
+eureka:
+  instance:
+    hostname: ${spring.cloud.client.ip-address}
+    prefer-ip-address: true
+    instance-id: ${eureka.instance.hostname}:${server.port}
+    #Every N(s), a heartbeat is sent to the server to prove that it is still alive.
+    lease-renewal-interval-in-seconds: 120
+    #Tell the server, if I do n’t give you a heartbeat within N(s), it means that I ’m “dead” and kicked me out
+    lease-expiration-duration-in-seconds: 180
+  client:
+    service-url:
+      #defaultZone: http://192.168.1.200:5000/eureka/,http://192.168.1.199:5000/eureka/
+      defaultZone: http://192.168.1.110:5000/eureka/

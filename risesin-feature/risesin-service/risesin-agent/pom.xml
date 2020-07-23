@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>risesin-service</artifactId>
+        <groupId>risesin.service</groupId>
+        <version>1.0.0</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>risesin-agent</artifactId>
+
+
+    <dependencies>
+        <dependency>
+            <groupId>com.risesin</groupId>
+            <artifactId>core-boot</artifactId>
+            <version>${risesin.tool.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.risesin</groupId>
+            <artifactId>agent-api</artifactId>
+            <version>${risesin.project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>risesin.common</groupId>
+            <artifactId>risesin-common</artifactId>
+            <version>${risesin.tool.version}</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.risesin</groupId>
+            <artifactId>system-api</artifactId>
+            <version>1.0.0</version>
+            <scope>compile</scope>
+        </dependency>
+    </dependencies>
+
+
+</project>

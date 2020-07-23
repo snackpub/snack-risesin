@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.risesin</groupId>
+        <artifactId>Risesin</artifactId>
+        <version>1.0.0</version>
+    </parent>
+
+    <groupId>risesin.service-api</groupId>
+    <artifactId>risesin-service-api</artifactId>
+    <version>${risesin.project.version}</version>
+    <name>${project.artifactId}</name>
+    <description>微服务API集合</description>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>agent-api</module>
+        <module>enterprise-api</module>
+        <module>system-api</module>
+        <module>user-api</module>
+    </modules>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
+        </dependency>
+        <!--risesin-->
+        <dependency>
+            <groupId>com.risesin</groupId>
+            <artifactId>core-tool</artifactId>
+            <version>${risesin.tool.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.risesin</groupId>
+            <artifactId>core-jpaplus</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+            <version>${swagger.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>io.swagger</groupId>
+                    <artifactId>swagger-models</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>io.swagger</groupId>
+            <artifactId>swagger-models</artifactId>
+            <version>${swagger.models.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>net.dreamlu</groupId>
+            <artifactId>mica-auto</artifactId>
+            <version>${mica.auto.version}</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+
+</project>

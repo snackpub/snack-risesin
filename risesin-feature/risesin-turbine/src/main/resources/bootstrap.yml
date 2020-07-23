@@ -1,0 +1,21 @@
+server:
+  port: 5004
+
+
+#turbine
+turbine:
+  aggregator:
+    clusterConfig: default   # 指定聚合哪些集群，多个使用","分割，默认为default。
+  appConfig: risesin-system-service,risesin-core-service # 配置Eureka中的serviceId列表，表明监控哪些服务
+  clusterNameExpression: new String("default") # metadata['cluster']
+  instanceUrlSuffix: actuator/hystrix.stream
+  # 1. clusterNameExpression指定集群名称，默认表达式appName；此时：turbine.aggregator.clusterConfig需要配置想要监控的应用名称
+  # 2. 当clusterNameExpression: default时，turbine.aggregator.clusterConfig可以不写，因为默认就是default
+  # 3. 当clusterNameExpression: metadata['cluster']时，假设想要监控的应用配置了eureka.instance.metadata-map.cluster: ABC，则需要配置，同时turbine.aggregator.clusterConfig: ABC
+eureka:
+  instance:
+    hostname: localhost
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: http://192.168.1.200:5000/eureka/,http://192.168.1.198:5001/eureka/,http://192.168.1.197:5002/eureka/

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.risesin</groupId>
+        <artifactId>Risesin</artifactId>
+        <version>1.0.0</version>
+    </parent>
+
+    <artifactId>auth</artifactId>
+    <version>${risesin.project.version}</version>
+    <name>${project.artifactId}</name>
+    <packaging>jar</packaging>
+    <description>鉴权服务</description>
+
+    <dependencies>
+        <!--工具类核心包-->
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
+        <!-- Oauth2 -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-oauth2</artifactId>
+        </dependency>
+        <!--Risesin-->
+        <dependency>
+            <groupId>risesin.common</groupId>
+            <artifactId>risesin-common</artifactId>
+            <version>${risesin.project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.risesin</groupId>
+            <artifactId>core-cloud</artifactId>
+            <version>${risesin.tool.version}</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.risesin</groupId>
+            <artifactId>core-secure</artifactId>
+            <version>${risesin.tool.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.risesin</groupId>
+            <artifactId>core-log</artifactId>
+            <version>${risesin.tool.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.risesin</groupId>
+            <artifactId>user-api</artifactId>
+            <version>${risesin.project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.risesin</groupId>
+            <artifactId>core-swagger</artifactId>
+            <version>${risesin.tool.version}</version>
+        </dependency>
+        <!-- MySQL -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

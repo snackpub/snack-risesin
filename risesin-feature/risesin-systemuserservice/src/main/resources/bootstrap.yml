@@ -1,0 +1,61 @@
+# Tomcat
+server:
+  tomcat:
+    uri-encoding: UTF-8
+    max-threads: 1000
+    min-spare-threads: 30
+  port: 10010
+#  servlet:
+#    context-path: /system
+
+management:
+  health:
+    redis:
+      enabled: false
+
+  #对外暴露端口
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+
+
+spring:
+  cloud:
+    config:
+      discovery:
+        service-id: risesin-config-server
+        enabled: true
+      name: risesin-system-service
+      profile: dev
+      label: master
+      username: root
+      password: Link_abc
+    bus:
+      enabled: true
+      id: ${spring.cloud.config.name}:${spring.cloud.config.profile}:${random.value}
+      trace:
+        enabled: true
+  rabbitmq:
+    host: 192.168.1.199
+    username: admin
+    password: admin
+    port: 5672
+
+
+##eureka
+eureka:
+  client:
+    service-url:
+      defaultZone: http://192.168.1.111:5000/eureka/
+  instance:
+    hostname: ${spring.cloud.client.ip-address}
+    instance-id: ${eureka.instance.hostname}:${server.port}
+    prefer-ip-address: true
+    #Every N(seconds), a heartbeat is sent to the server to prove that it is still alive.
+    lease-renewal-interval-in-seconds: 120
+    #Tell the server, if I do n’t give you a heartbeat within N(seconds), it means that I ’m “dead” and kicked me out
+    lease-expiration-duration-in-seconds: 180

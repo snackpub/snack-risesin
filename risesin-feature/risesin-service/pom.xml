@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <modules>
+        <module>risesin-agent</module>
+        <module>risesin-enterprise</module>
+        <module>risesin-system</module>
+    </modules>
+
+    <parent>
+        <groupId>com.risesin</groupId>
+        <artifactId>Risesin</artifactId>
+        <version>1.0.0</version>
+    </parent>
+
+    <groupId>risesin.service</groupId>
+    <artifactId>risesin-service</artifactId>
+    <version>1.0.0</version>
+    <description>微服务集合</description>
+    <packaging>pom</packaging>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.risesin</groupId>
+            <artifactId>core-jpaplus</artifactId>
+            <version>${risesin.tool.version}</version>
+        </dependency>
+
+    </dependencies>
+
+</project>

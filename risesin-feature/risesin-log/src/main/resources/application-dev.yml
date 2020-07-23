@@ -1,0 +1,50 @@
+#服务器端口
+server:
+  port: 8103
+
+#数据源配置
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: go_ROOT<0
+    type: com.alibaba.druid.pool.DruidDataSource
+    url:  jdbc:mysql://192.168.1.199:3306/risesin?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=GMT%2b8
+    druid:
+      initialSize: 1
+      maxActive: 10
+      minIdle: 1
+      maxWait: 60000
+  jpa:
+    show-sql: true
+    open-in-view: false
+    properties:
+      hibernate:
+        hbm2ddl:
+          auto: validate
+  rabbitmq:
+    host: 192.168.1.200
+    port: 5672
+    username: admin
+    password: admin
+    publisher-confirms: true
+    virtual-host: /
+
+management:
+  health:
+    redis:
+      enabled: false
+
+#eureka
+eureka:
+  client:
+    service-url:
+      defaultZone: http://192.168.1.200:5000/eureka/
+  instance:
+    hostname: ${spring.cloud.client.ip-address}
+    instance-id: ${eureka.instance.hostname}:${server.port}
+    prefer-ip-address: true
+    #Every N(seconds), a heartbeat is sent to the server to prove that it is still alive.
+    lease-renewal-interval-in-seconds: 120
+    #Tell the server, if I do n’t give you a heartbeat within N(seconds), it means that I ’m “dead” and kicked me out
+    lease-expiration-duration-in-seconds: 180
